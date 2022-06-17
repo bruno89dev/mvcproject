@@ -1,0 +1,36 @@
+@model ProjetoMercado.DTO.ProdutoDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+<h2>Novo Produto</h2>
+<hr>
+<form class="form-horizontal" asp-controller="Produtos" asp-action="Salvar" method="post">
+    <input type="hidden" asp-for="Id" value="0">
+    <label asp-for="Nome">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Insira o nome do Produto"><br>
+    <span asp-validation-for="Nome"></span>
+
+    <label asp-for="CategoriaID">Categoria</label>
+    <select name="select-list" class="form-control" asp-for="CategoriaID" asp-items='@(new SelectList(@ViewBag.Categorias, "Id","Nome"))'></select><br>
+    
+    <label asp-for="FornecedorID">Fornecedor</label>
+    <select name="select-list" class="form-control" asp-for="FornecedorID" asp-items='@(new SelectList(@ViewBag.Fornecedores, "Id","Nome"))'></select><br>
+
+    <label asp-for="PrecoDeCusto">Preço de Custo</label>
+    <input asp-for="PrecoDeCusto" class="form-control" type="number" step="any" placeholder="R$ 0,00"><br>
+    <span asp-validation-for="PrecoDeCusto"></span>
+
+    <label asp-for="PrecoDeVenda">Preço de Venda</label>
+    <input asp-for="PrecoDeVenda" class="form-control" type="number" step="any" placeholder="R$ 0,00"><br>
+    <span asp-validation-for="PrecoDeVenda"></span>
+
+    <label asp-for="UnidadeDeMedicao">Unidade de Medição</label>
+    <select asp-for="UnidadeDeMedicao" name="UnidadeDeMedicao" class="form-control">
+        <option asp-for="UnidadeDeMedicao" value="0">Litro</option>
+        <option asp-for="UnidadeDeMedicao" value="1">Kg</option>
+        <option asp-for="UnidadeDeMedicao" value="2">Unidade</option>
+    </select>
+    <span asp-validation-for="UnidadeDeMedicao"></span><br>
+    <button class="btn btn-success">Cadastrar</button>
+
+</form>
